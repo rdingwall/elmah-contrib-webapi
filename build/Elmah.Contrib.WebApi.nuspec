@@ -6,7 +6,7 @@
     <authors>Richard Dingwall</authors>
     <owners>Richard Dingwall</owners>
     <licenseUrl>https://raw.github.com/rdingwall/elmah-contrib-webapi/master/license.txt</licenseUrl>
-    <projectUrl>https://raw.github.com/rdingwall/elmah-contrib-webapi</projectUrl>
+    <projectUrl>https://github.com/rdingwall/elmah-contrib-webapi</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ASP.NET Web API exception filter for logging errors to ELMAH. Ported from Fabian Vilers' Elmah.Contrib.Mvc.</description>
     <language>en-US</language>
