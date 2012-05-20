@@ -5,9 +5,9 @@ Elmah.Contrib.WebApi
 
 ### >>> [Get Elmah.Contrib.WebApi via NuGet](https://nuget.org/packages/Elmah.Contrib.WebApi)
 
-The latest package is also available as a zip from the [downloads page]()#.
+The latest package is also available as a zip from the [downloads page](https://github.com/rdingwall/elmah-contrib-webapi/downloads).
 
-## Usage
+# Usage
 
 Simply register it during your application's start up, or on a controller-by-controller basis.
 
@@ -22,10 +22,15 @@ protected void Application_Start()
 
 Note this filter requires ASP.NET (it passes the HttpContext directly to ELMAH to record info about the HTTP request). It will not work in a self-hosted WCF application.
 
-## Acknowledgements
+# Acknowledgements
 
 This library is a port of Fabian Vilers' [Elmah.Contrib.Mvc](http://nuget.org/packages/Elmah.Contrib.Mvc) to ASP.NET Web API. The original implementation (for MVC) can be found [here](http://stackoverflow.com/questions/766610/how-to-get-elmah-to-work-with-asp-net-mvc-handleerror-attribute/779961#779961).
 
-## License
+# License
 
 As a derivative work of Elmah.Contrib.Mvc, this library is available under the same [MS-PL license](http://www.opensource.org/licenses/ms-pl).
+
+# Release History / Changelog
+
+### 1.0.0.0 - May 20, 2012
+Initial release.
