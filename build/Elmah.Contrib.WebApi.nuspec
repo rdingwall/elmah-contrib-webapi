@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Elmah.Contrib.WebApi</id>
+    <version>0.0.0.0</version>
+    <authors>Richard Dingwall</authors>
+    <owners>Richard Dingwall</owners>
+    <licenseUrl>https://raw.github.com/rdingwall/elmah-contrib-webapi/master/licence.txt</licenseUrl>
+    <projectUrl>https://raw.github.com/rdingwall/elmah-contrib-webapi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ASP.NET Web API exception filter for logging errors to ELMAH. Ported from Fabian Vilers' Elmah.Contrib.Mvc.</description>
+    <language>en-US</language>
+    <tags>WebAPI ELMAH</tags>
+    <dependencies>
+      <dependency id="elmah" version="0.0.0.0" />
+      <dependency id="AspNetWebApi.Core" version="0.0.0.0" />
+    </dependencies>
+  </metadata>
+</package>

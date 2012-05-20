@@ -11,3 +11,4 @@ _ReSharper.*
 *.sln.cache
 
 packages
+/output

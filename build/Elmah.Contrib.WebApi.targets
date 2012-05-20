@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>..\Elmah.Contrib.WebApi\packages\MSBuildTasks.1.3.0.528\lib\net20</MSBuildCommunityTasksPath>
+    <OutputDir>..\output</OutputDir>
+    <NuspecFile>Elmah.Contrib.WebApi.nuspec</NuspecFile>
+    <ProjectFile>..\Elmah.Contrib.WebApi\Elmah.Contrib.WebApi.csproj</ProjectFile>
+  </PropertyGroup>
+
+  <Import Project="..\Elmah.Contrib.WebApi\packages\MSBuildTasks.1.3.0.528\lib\net20\MSBuild.Community.Tasks.Targets"/>
+  <UsingTask AssemblyFile="..\lib\NuGet.MSBuild.1.5.20831.132\NuGet.MSBuild.dll" TaskName="NuGet.MSBuild.NuGet" />
+
+  
+  <!-- Create our NuGet package. Uses the assembly version (from 
+  SolutionInfo.cs) as the package version and reads the elmah version
+  from packages.config to update the NuGet <dependencies> list. (Automated
+  because I always forgot to do this manually). -->
+  <Target Name="CreateNupkg">
+
+    <CallTarget Targets="Rebuild" />
+
+    <!-- cleanup any files we won't be distributing in our nupkg -->
+    <ItemGroup> 
+      <FilesToRemove Include="$(OutputDir)\*.*" Exclude="$(OutputDir)\**\Elmah.Contrib.WebApi.*" />
+    </ItemGroup>
+    <Delete Files="@(FilesToRemove)" />
+
+    <GetAssemblyIdentity AssemblyFiles="$(OutputDir)\lib\net40\Elmah.Contrib.WebApi.dll">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyInfo"/>
+    </GetAssemblyIdentity>
+    
+    <!-- When updating a package, NuGet seems to leave old versions there. So
+    read the last one (XPath doesn't have a max() function unfortunately) and
+    use that for the <dependencies> list. -->
+    <XmlRead XPath="//package[@id='elmah' and position()=last()]/@version" 
+             XmlFileName="..\src\Elmah.Contrib.WebApi\packages.config">
+        <Output TaskParameter="Value" PropertyName="ElmahDependencyVersion" />
+    </XmlRead>
+
+    <XmlRead XPath="//package[@id='AspNetWebApi.Core' and position()=last()]/@version"
+             XmlFileName="..\src\Elmah.Contrib.WebApi\packages.config">
+      <Output TaskParameter="Value" PropertyName="WebApiDependencyVersion" />
+    </XmlRead>
+
+    <Copy SourceFiles="$(NuspecFile)" DestinationFolder="$(OutputDir)" />
+
+    <XmlUpdate XmlFileName="$(OutputDir)\$(NuspecFile)"
+               Xpath="//version"
+               Value="%(AssemblyInfo.Version)" />
+               
+   <XmlUpdate XmlFileName="$(OutputDir)\$(NuspecFile)"
+               Xpath="//dependency[@id='elmah']/@version"
+               Value="$(ElmahDependencyVersion)" />
+
+    <XmlUpdate XmlFileName="$(OutputDir)\$(NuspecFile)"
+               Xpath="//dependency[@id='AspNetWebApi.Core']/@version"
+               Value="$(WebApiDependencyVersion)" />
+               
+    <NuGet BaseDir="$(OutputDir)" 
+           PackageDir="$(OutputDir)" 
+           SpecFile="$(OutputDir)\$(NuspecFile)" />
+    
+  </Target>
+
+  <Target Name="CreateZip">
+    <CallTarget Targets="Rebuild" />
+
+    <Copy SourceFiles="..\licence.txt" DestinationFolder="$(OutputDir)\lib" />
+    
+    <ItemGroup>
+      <ZipFiles Include="$(OutputDir)\lib\**\*.*" />
+    </ItemGroup>
+
+    <GetAssemblyIdentity AssemblyFiles="$(OutputDir)\lib\net40\Elmah.Contrib.WebApi.dll">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyInfo"/>
+    </GetAssemblyIdentity>
+
+    <Zip ZipFileName="$(OutputDir)\Elmah.Contrib.WebApi-%(AssemblyInfo.Version).zip"
+         WorkingDirectory="$(OutputDir)\lib"
+         Files="@(ZipFiles)" />
+    
+  </Target>
+
+  <Target Name="Rebuild">
+    <RemoveDir Directories="$(OutputDir)" />
+
+    <!-- .NET 2.0
+    <MSBuild Projects="$(ProjectFile)"
+             Targets="Clean; Rebuild"
+             Properties="Configuration=Release;OutputPath=..\$(OutputDir)\lib\net20;TargetFrameworkVersion=v2.0" />
+
+    
+    <MSBuild Projects="$(ProjectFile)"
+             Targets="Clean; Rebuild"
+             Properties="Configuration=Release;OutputPath=..\$(OutputDir)\lib\net30;TargetFrameworkVersion=v3.0" />
+
+    
+    <MSBuild Projects="$(ProjectFile)"
+             Targets="Clean; Rebuild"
+             Properties="Configuration=Release;OutputPath=..\$(OutputDir)\lib\net35;TargetFrameworkVersion=v3.5" />
+    -->
+    <!-- .NET 4.0 -->
+    <MSBuild Projects="$(ProjectFile)"
+             Targets="Clean; Rebuild"
+             Properties="Configuration=Release;OutputPath=$(OutputDir)\lib\net40;TargetFrameworkVersion=v4.0" />
+  </Target>
+  
+</Project>
