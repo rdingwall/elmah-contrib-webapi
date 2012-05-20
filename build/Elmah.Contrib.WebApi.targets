@@ -4,10 +4,10 @@
     <MSBuildCommunityTasksPath>.</MSBuildCommunityTasksPath>
     <OutputDir>..\output</OutputDir>
     <NuspecFile>Elmah.Contrib.WebApi.nuspec</NuspecFile>
-    <ProjectFile>..\Elmah.Contrib.WebApi\Elmah.Contrib.WebApi.csproj</ProjectFile>
+    <ProjectFile>..\src\Elmah.Contrib.WebApi\Elmah.Contrib.WebApi.csproj</ProjectFile>
   </PropertyGroup>
 
-  <Import Project="..\Elmah.Contrib.WebApi\packages\MSBuildTasks.1.3.0.528\lib\net20\MSBuild.Community.Tasks.Targets"/>
+  <Import Project="..\src\Elmah.Contrib.WebApi\packages\MSBuildTasks.1.3.0.528\lib\net20\MSBuild.Community.Tasks.Targets"/>
   <UsingTask AssemblyFile="..\lib\NuGet.MSBuild.1.5.20831.132\NuGet.MSBuild.dll" TaskName="NuGet.MSBuild.NuGet" />
 
   
@@ -30,12 +30,12 @@
     </GetAssemblyIdentity>
     
     <XmlRead XPath="//package[@id='elmah']/@version" 
-             XmlFileName="..\Elmah.Contrib.WebApi\packages.config">
+             XmlFileName="..\src\Elmah.Contrib.WebApi\packages.config">
         <Output TaskParameter="Value" PropertyName="ElmahDependencyVersion" />
     </XmlRead>
     
     <XmlRead XPath="//package[@id='AspNetWebApi.Core']/@version"
-             XmlFileName="..\Elmah.Contrib.WebApi\packages.config">
+             XmlFileName="..\src\Elmah.Contrib.WebApi\packages.config">
       <Output TaskParameter="Value" PropertyName="WebApiDependencyVersion" />
     </XmlRead>
 
@@ -90,7 +90,7 @@
          any other CLR versions. -->
     <MSBuild Projects="$(ProjectFile)"
              Targets="Clean; Rebuild"
-             Properties="Configuration=Release;OutputPath=$(OutputDir)\lib\net40;TargetFrameworkVersion=v4.0" />
+             Properties="Configuration=Release;OutputPath=..\$(OutputDir)\lib\net40;TargetFrameworkVersion=v4.0" />
   </Target>
   
 </Project>
