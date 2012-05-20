@@ -9,3 +9,5 @@ obj/
 #Resource Caches
 _ReSharper.*
 *.sln.cache
+
+packages
