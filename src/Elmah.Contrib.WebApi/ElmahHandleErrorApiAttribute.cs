@@ -13,6 +13,7 @@ namespace Elmah.Contrib.WebApi
     /// Original implementation from http://stackoverflow.com/questions/766610/how-to-get-elmah-to-work-with-asp-net-mvc-handleerror-attribute/779961#779961.
     /// Ported from the Elmah.Contrib.Mvc package on NuGet.
     /// </remarks>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class ElmahHandleErrorApiAttribute : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
