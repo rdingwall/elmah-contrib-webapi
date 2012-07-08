@@ -32,5 +32,8 @@ As a derivative work of Elmah.Contrib.Mvc, this library is available under the s
 
 # Release History / Changelog
 
+### 1.0.1.0 - July 8, 2012
+Minor fix issue #1, removed Elmah and System.Web.Http assemblies from NuGet package.
+
 ### 1.0.0.0 - May 20, 2012
 Initial release.
