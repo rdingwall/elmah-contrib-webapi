@@ -21,7 +21,7 @@
 
     <!-- cleanup any files we won't be distributing in our nupkg -->
     <ItemGroup> 
-      <FilesToRemove Include="$(OutputDir)\*.*" Exclude="$(OutputDir)\**\Elmah.Contrib.WebApi.*" />
+      <FilesToRemove Include="$(OutputDir)\**\*.*" Exclude="$(OutputDir)\**\Elmah.Contrib.WebApi.*" />
     </ItemGroup>
     <Delete Files="@(FilesToRemove)" />
 
