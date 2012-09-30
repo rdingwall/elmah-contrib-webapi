@@ -32,6 +32,9 @@ As a derivative work of Elmah.Contrib.Mvc, this library is available under the s
 
 # Release History / Changelog
 
+### 1.0.2.0 - September 30, 2012
+Fix for issue #2, updated to use new Microsoft.AspNet.WebApi.Core NuGet package.
+
 ### 1.0.1.0 - July 8, 2012
 Minor fix issue #1, removed Elmah and System.Web.Http assemblies from NuGet package.
 
