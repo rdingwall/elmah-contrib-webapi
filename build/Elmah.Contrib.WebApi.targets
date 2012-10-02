@@ -33,14 +33,20 @@
              XmlFileName="..\src\Elmah.Contrib.WebApi\packages.config">
         <Output TaskParameter="Value" PropertyName="ElmahDependencyVersion" />
     </XmlRead>
+
+    <XmlRead XPath="//package[@id='elmah.corelibrary']/@version"
+             XmlFileName="..\src\Elmah.Contrib.WebApi\packages.config">
+      <Output TaskParameter="Value" PropertyName="ElmahCoreDependencyVersion" />
+    </XmlRead>
     
-    <XmlRead XPath="//package[@id='AspNetWebApi.Core']/@version"
+    <XmlRead XPath="//package[@id='Microsoft.AspNet.WebApi.Core']/@version"
              XmlFileName="..\src\Elmah.Contrib.WebApi\packages.config">
       <Output TaskParameter="Value" PropertyName="WebApiDependencyVersion" />
     </XmlRead>
 
-    <Message Text="Using ELMAH dependency version = $(ElmahDependencyVersion)" />
-    <Message Text="Using WebAPI dependency version = $(WebApiDependencyVersion)" />
+    <Message Text="Using elmah dependency version = $(ElmahDependencyVersion)" />
+    <Message Text="Using elmah.corelibrary dependency version = $(ElmahCoreDependencyVersion)" />
+    <Message Text="Using Microsoft.AspNet.WebApi.Core dependency version = $(WebApiDependencyVersion)" />
 
 
     <Copy SourceFiles="$(NuspecFile)" DestinationFolder="$(OutputDir)" />
@@ -54,7 +60,11 @@
                Value="$(ElmahDependencyVersion)" />
 
     <XmlUpdate XmlFileName="$(OutputDir)\$(NuspecFile)"
-               Xpath="//dependency[@id='AspNetWebApi.Core']/@version"
+               Xpath="//dependency[@id='elmah.corelibrary']/@version"
+               Value="$(ElmahCoreDependencyVersion)" />
+
+    <XmlUpdate XmlFileName="$(OutputDir)\$(NuspecFile)"
+               Xpath="//dependency[@id='Microsoft.AspNet.WebApi.Core']/@version"
                Value="$(WebApiDependencyVersion)" />
                
     <NuGet BaseDir="$(OutputDir)" 

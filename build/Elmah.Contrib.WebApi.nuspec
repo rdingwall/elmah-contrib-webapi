@@ -13,7 +13,8 @@
     <tags>WebAPI ELMAH</tags>
     <dependencies>
       <dependency id="elmah" version="0.0.0.0" />
-      <dependency id="AspNetWebApi.Core" version="0.0.0.0" />
+      <dependency id="elmah.corelibrary" version="0.0.0.0" />
+      <dependency id="Microsoft.AspNet.WebApi.Core" version="0.0.0.0" />
     </dependencies>
   </metadata>
 </package>
