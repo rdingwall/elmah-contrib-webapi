@@ -33,7 +33,10 @@ namespace Elmah.Contrib.WebApi
             var context = HttpContext.Current;
             if (context == null)
                 return false;
-            var signal = ErrorSignal.FromContext(context);
+            var application = HttpContext.Current.ApplicationInstance;
+            if (application == null)
+                return false;
+            var signal = ErrorSignal.Get(application);
             if (signal == null)
                 return false;
             signal.Raise(e, context);
