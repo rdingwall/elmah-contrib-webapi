@@ -32,6 +32,9 @@ As a derivative work of Elmah.Contrib.Mvc, this library is available under the s
 
 # Release History / Changelog
 
+### 1.0.5.0 - March 25, 2013
+Patch from shchahrykovich to not throw a NullReferenceException in the event that HttpContext.Current.ApplicationInstance is null.
+
 ### 1.0.4.0 - October 2, 2012
 Added missing .nuspec package dependencies.
 
