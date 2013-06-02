@@ -32,6 +32,9 @@ As a derivative work of Elmah.Contrib.Mvc, this library is available under the s
 
 # Release History / Changelog
 
+### 1.0.6.0 - June 2, 2013
+Removed Elmah from NuGet dependency list -- we only need Elmah.CoreLibrary. (Thanks @DavidDeSloovere).
+
 ### 1.0.5.0 - March 25, 2013
 Patch from shchahrykovich to not throw a NullReferenceException in the event that HttpContext.Current.ApplicationInstance is null (pull request #3).
 
