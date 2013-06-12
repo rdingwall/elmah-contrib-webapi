@@ -14,7 +14,7 @@ namespace Elmah.Contrib.WebApi
     /// Ported from the Elmah.Contrib.Mvc package on NuGet.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-    public class ElmahHandleErrorApiAttribute : ExceptionFilterAttribute
+    public sealed class ElmahHandleErrorApiAttribute : ExceptionFilterAttribute
     {
         /// <summary>
         /// Raises the exception event.
