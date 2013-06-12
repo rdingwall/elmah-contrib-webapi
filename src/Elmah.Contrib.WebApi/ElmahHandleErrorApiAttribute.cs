@@ -14,9 +14,13 @@ namespace Elmah.Contrib.WebApi
     /// Ported from the Elmah.Contrib.Mvc package on NuGet.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-    public class ElmahHandleErrorApiAttribute : ExceptionFilterAttribute
+    public sealed class ElmahHandleErrorApiAttribute : ExceptionFilterAttribute
     {
-        public override void OnException(HttpActionExecutedContext actionExecutedContext)
+        /// <summary>
+        /// Raises the exception event.
+        /// </summary>
+        /// <param name="actionExecutedContext">The context for the action.</param>
+        public sealed override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             base.OnException(actionExecutedContext);
 
