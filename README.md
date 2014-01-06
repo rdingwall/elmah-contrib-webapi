@@ -5,7 +5,7 @@ Elmah.Contrib.WebApi
 
 ### >>> [Get Elmah.Contrib.WebApi via NuGet](https://nuget.org/packages/Elmah.Contrib.WebApi)
 
-The latest package is also available as a zip from the [downloads page](https://github.com/rdingwall/elmah-contrib-webapi/downloads).
+The latest package is also available as a zip from the [releases page](https://github.com/rdingwall/elmah-contrib-webapi/releases).
 
 # Usage
 
