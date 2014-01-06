@@ -25,7 +25,7 @@
     </ItemGroup>
     <Delete Files="@(FilesToRemove)" />
 
-    <GetAssemblyIdentity AssemblyFiles="$(OutputDir)\lib\net40\Elmah.Contrib.WebApi.dll">
+    <GetAssemblyIdentity AssemblyFiles="$(OutputDir)\lib\net45\Elmah.Contrib.WebApi.dll">
       <Output TaskParameter="Assemblies" ItemName="AssemblyInfo"/>
     </GetAssemblyIdentity>
     
@@ -83,7 +83,7 @@
       <ZipFiles Include="$(OutputDir)\lib\license.txt" />
     </ItemGroup>
 
-    <GetAssemblyIdentity AssemblyFiles="$(OutputDir)\lib\net40\Elmah.Contrib.WebApi.dll">
+    <GetAssemblyIdentity AssemblyFiles="$(OutputDir)\lib\net45\Elmah.Contrib.WebApi.dll">
       <Output TaskParameter="Assemblies" ItemName="AssemblyInfo"/>
     </GetAssemblyIdentity>
 
@@ -96,11 +96,9 @@
   <Target Name="Rebuild">
     <RemoveDir Directories="$(OutputDir)" />
    
-    <!-- ASP.NET Web API only supports .NET 4.0, so don't need to worry about
-         any other CLR versions. -->
     <MSBuild Projects="$(ProjectFile)"
              Targets="Clean; Rebuild"
-             Properties="Configuration=Release;OutputPath=..\$(OutputDir)\lib\net40;TargetFrameworkVersion=v4.0" />
+             Properties="Configuration=Release;OutputPath=..\$(OutputDir)\lib\net45;TargetFrameworkVersion=v4.5" />
   </Target>
   
 </Project>
