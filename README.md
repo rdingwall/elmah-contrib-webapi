@@ -32,20 +32,4 @@ As a derivative work of Elmah.Contrib.Mvc, this library is available under the s
 
 # Release History / Changelog
 
-### 1.0.6.0 - June 2, 2013
-Removed Elmah from NuGet dependency list -- we only need Elmah.CoreLibrary. (Thanks @DavidDeSloovere).
-
-### 1.0.5.0 - March 25, 2013
-Patch from shchahrykovich to not throw a NullReferenceException in the event that HttpContext.Current.ApplicationInstance is null (pull request #3).
-
-### 1.0.4.0 - October 2, 2012
-Added missing .nuspec package dependencies.
-
-### 1.0.2.0 - September 30, 2012
-Fix for issue #2, updated to use new Microsoft.AspNet.WebApi.Core NuGet package.
-
-### 1.0.1.0 - July 8, 2012
-Minor fix issue #1, removed Elmah and System.Web.Http assemblies from NuGet package.
-
-### 1.0.0.0 - May 20, 2012
-Initial release.
+See the [Releases page](https://github.com/rdingwall/elmah-contrib-webapi/releases).
