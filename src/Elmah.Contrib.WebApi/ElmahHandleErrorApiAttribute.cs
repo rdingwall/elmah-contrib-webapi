@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net.Http;
 using System.Web;
+using System.Web.Http;
 using System.Web.Http.Filters;
 
 namespace Elmah.Contrib.WebApi
@@ -14,22 +16,51 @@ namespace Elmah.Contrib.WebApi
     /// Ported from the Elmah.Contrib.Mvc package on NuGet.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-    public sealed class ElmahHandleErrorApiAttribute : ExceptionFilterAttribute
+    public sealed class ElmahHandleErrorApiAttribute : ActionFilterAttribute
     {
-        /// <summary>
-        /// Raises the exception event.
-        /// </summary>
-        /// <param name="actionExecutedContext">The context for the action.</param>
-        public sealed override void OnException(HttpActionExecutedContext actionExecutedContext)
+        public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            base.OnException(actionExecutedContext);
+            base.OnActionExecuted(actionExecutedContext);
 
             var e = actionExecutedContext.Exception;
-            if (RaiseErrorSignal(e)      // prefer signaling, if possible
-                || IsFiltered(actionExecutedContext))     // filtered?
+            if (e != null)
+            {
+                RaiseOrLog(e, actionExecutedContext);
+            }
+            else if (!actionExecutedContext.Response.IsSuccessStatusCode)
+            {
+                RaiseOrLog(
+                    new HttpException(
+                        (int)actionExecutedContext.Response.StatusCode,
+                        ResolveMessage(actionExecutedContext)),
+                    actionExecutedContext);
+            }
+        }
+
+        private string ResolveMessage(HttpActionExecutedContext actionExecutedContext)
+        {
+            const string messageKey = "Message";
+
+            var defaultMessage = actionExecutedContext.Response.ReasonPhrase;
+            var objectContent = actionExecutedContext.Response.Content as ObjectContent<HttpError>;
+            if (objectContent == null) return defaultMessage;
+
+            var value = objectContent.Value as HttpError;
+            if (value == null) return defaultMessage;
+
+            if (!value.ContainsKey(messageKey)) return defaultMessage;
+
+            var message = value[messageKey] as string;
+            return string.IsNullOrWhiteSpace(message) ? defaultMessage : message;
+        }
+
+        private void RaiseOrLog(Exception exception, HttpActionExecutedContext actionExecutedContext)
+        {
+            if (RaiseErrorSignal(exception) // prefer signaling, if possible
+                || IsFiltered(actionExecutedContext)) // filtered?
                 return;
 
-            LogException(e);
+            LogException(exception);
         }
 
         private static bool RaiseErrorSignal(Exception e)
