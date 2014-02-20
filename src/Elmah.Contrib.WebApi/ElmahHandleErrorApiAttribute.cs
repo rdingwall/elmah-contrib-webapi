@@ -27,7 +27,7 @@ namespace Elmah.Contrib.WebApi
             {
                 RaiseOrLog(e, actionExecutedContext);
             }
-            else if (!actionExecutedContext.Response.IsSuccessStatusCode)
+            else if ((int)actionExecutedContext.Response.StatusCode >= 500)
             {
                 RaiseOrLog(
                     new HttpException(
