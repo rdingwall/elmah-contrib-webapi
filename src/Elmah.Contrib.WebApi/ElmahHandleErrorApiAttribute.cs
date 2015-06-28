@@ -4,6 +4,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
 
+#pragma warning disable 1591
+
 namespace Elmah.Contrib.WebApi
 {
     /// <summary>
@@ -99,3 +101,5 @@ namespace Elmah.Contrib.WebApi
         }
     }
 }
+
+#pragma warning restore 1591

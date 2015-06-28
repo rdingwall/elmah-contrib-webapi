@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.ExceptionHandling;
 
+#pragma warning disable 1591
+
 namespace Elmah.Contrib.WebApi
 {
 	public class ElmahExceptionLogger : ExceptionLogger
@@ -40,3 +42,5 @@ namespace Elmah.Contrib.WebApi
 		}
 	}
 }
+
+#pragma warning restore 1591
