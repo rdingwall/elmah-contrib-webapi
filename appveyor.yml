@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 1.0.9.{build}
 skip_tags: true
 platform: Any CPU
 configuration: Release
@@ -17,7 +17,7 @@ after_build:
 - cmd: nuget pack src\Elmah.Contrib.WebApi.nuspec -version "%appveyor_build_version%"
 - cmd: nuget pack src\Elmah.Contrib.WebApi.symbols.nuspec -version "%appveyor_build_version%" -Symbols
 - cmd: 7z a Elmah.Contrib.WebApi-%appveyor_build_version%.zip license.txt
-- cmd: cd src\Elmah.Contrib.WebApi\bin\Release && 7z a ..\..\..\..\Elmah.Contrib.WebApi-%appveyor_build_version%.zip *.dll *.pdb
+- cmd: cd src\Elmah.Contrib.WebApi\bin\Release && 7z a ..\..\..\..\Elmah.Contrib.WebApi-%appveyor_build_version%.zip Elmah.WebApi.Contrib.*
 artifacts:
 - path: '*.zip'
 - path: '*.nupkg'
