@@ -31,14 +31,14 @@ namespace Elmah.Contrib.WebApi
 				return null;
 
 			object value;
-			if (!request.Properties.TryGetValue("MS_HttpContext", out value))
-				return null;
+			if (request.Properties.TryGetValue("MS_HttpContext", out value))
+			{
+				HttpContextBase context = value as HttpContextBase;
+				if (context != null)
+					return context.ApplicationInstance.Context;
+			}
 
-			HttpContextBase context = value as HttpContextBase;
-			if (context == null)
-				return null;
-
-			return context.ApplicationInstance.Context;
+			return HttpContext.Current;
 		}
 	}
 }
