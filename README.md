@@ -1,6 +1,7 @@
 Elmah.Contrib.WebApi
 ====================
-[![NuGet version](https://img.shields.io/nuget/v/Elmah.Contrib.WebApi.svg)](http://nuget.org/List/Packages/Elmah.Contrib.WebApi)  [![NuGet downloads](https://img.shields.io/nuget/dt/Elmah.Contrib.WebApi.svg)](http://nuget.org/List/Packages/Elmah.Contrib.WebApi) 
+[![NuGet version](https://img.shields.io/nuget/v/Elmah.Contrib.WebApi.svg)](http://nuget.org/List/Packages/Elmah.Contrib.WebApi)  [![NuGet downloads](https://img.shields.io/nuget/dt/Elmah.Contrib.WebApi.svg)](http://nuget.org/List/Packages/Elmah.Contrib.WebApi) [![Build status](https://ci.appveyor.com/api/projects/status/7j68etlfvpt6d6hy?svg=true)](https://ci.appveyor.com/project/rdingwall/elmah-contrib-webapi)
+
 
 **Elmah.Contrib.WebApi** provides an ASP.NET Web API [exception filter](http://www.asp.net/web-api/overview/web-api-routing-and-actions/exception-handling), `ElmahHandleErrorApiAttribute`, for logging errors directly to [ELMAH](http://code.google.com/p/elmah/).
 
