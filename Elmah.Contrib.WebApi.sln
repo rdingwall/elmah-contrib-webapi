@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Contrib.WebApi", "Elmah.Contrib.WebApi\Elmah.Contrib.WebApi.csproj", "{551D95E3-4D4B-45C1-A848-86FC85D2E9A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Contrib.WebApi", "src\Elmah.Contrib.WebApi\Elmah.Contrib.WebApi.csproj", "{551D95E3-4D4B-45C1-A848-86FC85D2E9A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
