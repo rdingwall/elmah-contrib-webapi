@@ -14,8 +14,8 @@ build:
   project: Elmah.Contrib.WebApi.sln
   verbosity: minimal
 after_build:
-- cmd: nuget pack src\Elmah.Contrib.WebApi.nuspec -version %version%
-- cmd: nuget pack src\Elmah.Contrib.WebApi.symbols.nuspec -version %version% -Symbols
+- cmd: nuget pack src\Elmah.Contrib.WebApi.nuspec -version "%version%"
+- cmd: nuget pack src\Elmah.Contrib.WebApi.symbols.nuspec -version "%version%" -Symbols
 - cmd: 7z a Elmah.Contrib.WebApi-%version%.zip license.txt
 - cmd: cd src\Elmah.Contrib.WebApi\bin\Release && 7z a ..\..\..\..\Elmah.Contrib.WebApi-%version%.zip *.dll *.pdb
 artifacts:
