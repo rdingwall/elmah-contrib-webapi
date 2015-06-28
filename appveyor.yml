@@ -11,7 +11,7 @@ assembly_info:
 before_build:
  - nuget restore
 build:
-  project: src\Elmah.Contrib.WebApi.sln
+  project: Elmah.Contrib.WebApi.sln
   verbosity: minimal
 after_build:
 - cmd: nuget pack src\Elmah.Contrib.WebApi.nuspec -version "{version}"
