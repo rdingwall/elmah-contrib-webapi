@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Elmah.Contrib.WebApi</id>
-    <version>0.0.0.0</version>
+    <version>$version$</version>
     <authors>Richard Dingwall</authors>
     <owners>Richard Dingwall</owners>
     <licenseUrl>https://raw.github.com/rdingwall/elmah-contrib-webapi/master/license.txt</licenseUrl>
@@ -12,8 +12,11 @@
     <language>en-US</language>
     <tags>WebAPI ELMAH</tags>
     <dependencies>
-      <dependency id="elmah.corelibrary" version="0.0.0.0" />
-      <dependency id="Microsoft.AspNet.WebApi.Core" version="0.0.0.0" />
+      <dependency id="elmah.corelibrary" version="1.2.2" />
+      <dependency id="Microsoft.AspNet.WebApi.Core" version="5.1.1" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="Elmah.Contrib.WebApi\bin\Release\Elmah.Contrib.WebApi.dll" target="lib\net45\Elmah.Contrib.WebApi.dll" />
+  </files>
 </package>

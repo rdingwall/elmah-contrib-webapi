@@ -1,0 +1,27 @@
+version: 1.0.{build}
+skip_tags: true
+platform: Any CPU
+configuration: Release
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '$(APPVEYOR_REPO_COMMIT)'
+before_build:
+ - nuget restore
+build:
+  project: src\Elmah.Contrib.WebApi.sln
+  verbosity: minimal
+after_build:
+- cmd: nuget pack src\Elmah.Contrib.WebApi.nuspec -version "{version}"
+- cmd: nuget pack src\Elmah.Contrib.WebApi.symbols.nuspec -version "{version}" -Symbols
+- cmd: 7z a Elmah.Contrib.WebApi-{version}.zip license.txt
+- cmd: cd src\Elmah.Contrib.WebApi\bin\Release && 7z a ..\..\..\..\Elmah.Contrib.WebApi-{version}.zip *.dll *.pdb
+artifacts:
+- path: '*.zip'
+- path: '*.nupkg'
+nuget:
+  account_feed: true
+  project_feed: true
+  disable_publish_on_pr: true
