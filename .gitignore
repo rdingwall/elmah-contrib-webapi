@@ -12,3 +12,4 @@ _ReSharper.*
 
 packages
 /output
+.nuget/nuget.exe
