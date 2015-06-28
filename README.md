@@ -1,3 +1,5 @@
+[![NuGet version](https://img.shields.io/nuget/v/Elmah.Contrib.WebApi.svg)](http://nuget.org/List/Packages/Elmah.Contrib.WebApi)  [![NuGet downloads](https://img.shields.io/nuget/dt/Elmah.Contrib.WebApi.svg)](http://nuget.org/List/Packages/Elmah.Contrib.WebApi) 
+
 Elmah.Contrib.WebApi
 ====================
 
